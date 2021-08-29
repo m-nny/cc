@@ -27,13 +27,7 @@
     ]
   },
   "projects": {
-    "auth": {
-      "tags": []
-    },
     "brain": {
-      "tags": []
-    },
-    "data": {
       "tags": []
     }
   }

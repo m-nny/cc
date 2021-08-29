@@ -4,14 +4,14 @@ export type CatDocument = Cat & Document;
 
 @Schema()
 export class Cat {
-  @Prop()
-  name: string;
+    @Prop()
+    name: string;
 
-  @Prop()
-  age: number;
+    @Prop()
+    age: number;
 
-  @Prop()
-  breed: string;
+    @Prop()
+    breed: string;
 }
 
 export const CatSchema = SchemaFactory.createForClass(Cat);
