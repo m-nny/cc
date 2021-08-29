@@ -1,12 +1,11 @@
-import { AuthModule } from '@cc/auth';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TodoService } from './todo/todo.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { CatsModule } from './cats/cats.module';
 
 @Module({
-  imports: [AuthModule],
-  controllers: [AppController],
-  providers: [AppService, TodoService],
+  imports: [
+    MongooseModule.forRoot('mongodb://cc:change-in-production@localhost:8001'),
+    CatsModule,
+  ],
 })
 export class AppModule {}

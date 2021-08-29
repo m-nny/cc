@@ -16,9 +16,8 @@ async function bootstrap() {
   app.setViewEngine('hbs');
 
   const port = process.env.PORT || 3333;
-  await app.listen(port, () => {
-    Logger.log(`Listening at http://localhost:${port}`);
-  });
+  await app.listen(port);
+  Logger.log(`Listening at ${await app.getUrl()}`);
 }
 
 bootstrap();
