@@ -33,8 +33,7 @@
           "options": {
             "outputPath": "dist/apps/brain",
             "main": "apps/brain/src/main.ts",
-            "tsConfig": "apps/brain/tsconfig.app.json",
-            "assets": ["apps/brain/src/assets"]
+            "tsConfig": "apps/brain/tsconfig.app.json"
           },
           "configurations": {
             "production": {
