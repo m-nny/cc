@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "projects": {
+    "brain": {
+      "root": "apps/brain",
+      "sourceRoot": "apps/brain/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/brain",
+            "main": "apps/brain/src/main.ts",
+            "tsConfig": "apps/brain/tsconfig.app.json",
+            "assets": ["apps/brain/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/brain/src/environments/environment.ts",
+                  "with": "apps/brain/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "brain:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/brain/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/brain"],
+          "options": {
+            "jestConfig": "apps/brain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/nest"
+  },
+  "defaultProject": "brain"
+}
