@@ -1,0 +1,67 @@
+@startuml cc-sequence-diagram
+
+!$BGCOLOR = "white"
+!theme sketchy-outline
+
+'-------------------------------------------------
+
+actor "bob" as actor
+
+boundary "front (webpage)" as front
+
+database "brain (postgres)" as brain
+database "s3 (minio)" as minio
+
+
+'-------------------------------------------------
+title Scenario 0. Register/Login
+
+actor -> front: "register account"
+front -> brain: "create account with { username, password }"
+brain -> front: "ok, jwt"
+front -> actor: "redirect to front page"
+...
+'-----------------------
+...
+actor -> front: "enter login info"
+front -> brain: "login with { username, password }"
+brain -> front: "ok, jwt"
+front -> actor: "redirect to front page"
+
+
+'-------------------------------------------------
+newpage Scenario 1. Upload dataset
+
+actor -> front: "Upload new dataset"
+
+front -> brain: "Get dataset upload pre-signed url"
+brain -> front: "upload url"
+front -> actor: "Show upload form"
+actor -> front: "Choose .zip archive to upload"
+front -> minio: "Upload throug pre-signed url"
+minio -> front: "ok"
+
+actor -> front: "Enter dataset metadata (name + short description)"
+front -> brain: "create new dataset"
+brain -> front: "ok"
+front -> actor: "redirect to dataset summary page"
+'
+'-------------------------------------------------
+newpage Scenario 2. Label dataset
+
+actor -> front: "Open dataset summary page"
+front -> brain: "Get dataset summary"
+brain -> front: "summary"
+front -> actor: "show summary"
+
+actor -> front: "Start labeling"
+front -> brain: "Get couple unlabeled data"
+brain -> front: "unlabeled frames"
+
+front -> actor: "Show frames one by one"
+actor -> front: "classify frame"
+front -> brain: "save classsification"
+brain -> front: "ok"
+front -> actor: "show next frame"
+
+@enduml
