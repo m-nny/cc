@@ -8,6 +8,6 @@ It uses Nest.js framework for backend and React.js for frontend
 
 ## Sequence diagram
 
-You can find sequence diagrams in `schema` folder.
+You can find sequence diagrams in `schemas` folder.
 
 

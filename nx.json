@@ -30,6 +30,13 @@
     "brain": {
       "tags": []
     },
+    "front": {
+      "tags": []
+    },
+    "front-e2e": {
+      "tags": [],
+      "implicitDependencies": ["front"]
+    },
     "utils": {
       "tags": []
     }
